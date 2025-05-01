@@ -1,6 +1,6 @@
 ---
 title: "Camel x MCP"
-subtitle: "Make agents accessible to ALL tools!"
+subtitle: "Making AI Agents Accessible to ALL Tools!"
 author: "Xiaotian Jin, Camel-AI"
 date: today
 format: 
@@ -25,61 +25,61 @@ jupyter: python3
 
 ## Outline
 
-1. PART I: Understanding the MCP.
-2. PART II: MCP integration in Camel.
+1. PART I: Understanding the Model Context Protocol (MCP)
+2. PART II: MCP Integration in Camel
 
-# PART I: What's MCP, exactly? 
+# PART I: What is MCP, exactly? 
 
 ---
 
-## Brief History of Function Call (1/2)
+## Brief History of Function Calling (1/2)
 
-- **Pre-2023 - The time when LLM doesn't know what's the current time**:
-  - Tool usage via prompt engineering 
-  - Supported on framework level (e.g., LangChain, Camel agents)
-  - No native support; relied on parsing unstructured model output
+- **Pre-2023 - When LLMs Lacked Environmental Awareness**:
+  - Tool usage implemented via prompt engineering 
+  - Support provided at framework level (e.g., LangChain, Camel agents)
+  - No native capabilities; relied on parsing unstructured model outputs
 - **June 2023 – OpenAI Launches Native Function Calling**:
-  - Introduced in GPT-4 / GPT-3.5-turbo
-  - Uses structured JSON outputs to call tools and pass arguments
-  - Enabled more reliable and scalable tool use
+  - Introduced in GPT-4 and GPT-3.5-turbo
+  - Utilized structured JSON outputs to call tools and pass arguments
+  - Enabled significantly more reliable and scalable tool integration
 
 ---
 
-## Brief History of Function Call (2/2)
+## Brief History of Function Calling (2/2)
 
 - **Nov 2024 – Anthropic Proposes MCP (Model Context Protocol)**:
-  - Formalizes tool interaction using JSON-RPC 2.0
-  - Standardizes AI <-> Tool/Resource communication
+  - Formalizes tool interaction using JSON-RPC 2.0 standard
+  - Standardizes communication between AI systems and external tools/resources
 - **2025 – Industry-Wide Adoption**:
-  - OpenAI, DeepMind, and others adopt MCP
-  - Function calling becomes a core capability for agentic AI systems
+  - OpenAI, DeepMind, and other major players adopt MCP
+  - Function calling becomes a core capability for advanced agentic AI systems
 
 ## Why MCP? 
 
-Well, like this..
+The power of standardization:
   
 ![](figs/MCP.png){fig-align="center"}
 
 ---
 
-## How MCP? 
+## How Does MCP Work? 
 
-- MCP Hosts: Claude Desktop App, Camel agents, etc
-- MCP Clients: The internal protocol engine that sends/receives JSON-RPC messages
-- MCP Server: The program accepts the messages from clients and give responses
+- **MCP Hosts**: Claude Desktop App, Camel agents, and other deployment environments
+- **MCP Clients**: Internal protocol engines that handle sending/receiving JSON-RPC messages
+- **MCP Servers**: Programs that process incoming messages from clients and return structured responses
  
 ![](figs/mcp-how.webp){fig-align="center"}
 
-## MCP ecosystems
+## MCP Ecosystem
 
 - <a href="https://smithery.ai" target="_blank">Smithery</a>
 - <a href="https://composio.dev/" target="_blank">Composio</a>
 - <a href="https://mcp.run/" target="_blank">mcp.run</a>
 - <a href="https://www.aci.dev" target="_blank">ACI.dev</a>
-- <a href="https://www.modelscope.cn/mcp" target="_blank">Model scope</a>
-- <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank">awesome-mcp-servers</a>
+- <a href="https://www.modelscope.cn/mcp" target="_blank">ModelScope</a>
+- <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank">Awesome MCP Servers</a>
 
-## Hands on Camel agents with tools!
+## Hands-on with Camel Agents and Tools
 
 ```{python}
 #| echo: false
@@ -95,12 +95,12 @@ from camel.configs import ChatGPTConfig
 from camel.toolkits import FunctionTool
 
 def my_weird_add(a: int, b: int) -> int:
-    r"""Adds two numbers.
+    r"""Adds two numbers and includes a constant offset.
     Args:
         a (int): The first number to be added.
         b (int): The second number to be added.
     Returns:
-        integer: The sum of the two numbers.
+        integer: The sum of the two numbers plus 7.
     """
     return a + b + 7
 
@@ -112,9 +112,9 @@ response = agent.step("What is 15+15")
 print(response.msgs[0].content)
 ```
 
-# PART II: The Camel efforts on MCP.
+# PART II: Camel's Integration Efforts with MCP
 
-## Hands on Camel agents with MCP tools (1/2)
+## Hands-on with Camel Agents and MCP Tools (1/2)
 
 ```{python}
 #| echo: false
@@ -124,7 +124,7 @@ from camel.types import ModelPlatformType, ModelType
 from camel.configs import ChatGPTConfig
 ```
 
-- <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/time" target="_blank">Time MCP server</a>
+- <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/time" target="_blank">Time MCP Server</a>
 
 ```{json}
 {
@@ -137,7 +137,7 @@ from camel.configs import ChatGPTConfig
 }
 ```
 
-## Hands on Camel agents with MCP tools (2/2)
+## Hands-on with Camel Agents and MCP Tools (2/2)
 
 ```{python}
 model = ModelFactory.create(
@@ -172,7 +172,7 @@ await run_time_example()
 
 ## Creating an MCP Server from a Toolkit
 
-- <a href="https://docs.camel-ai.org/key_modules/tools.html#creating-an-mcp-server-from-a-toolkit" target="_blank">From Camel tools to MCP tools</a>
+- <a href="https://docs.camel-ai.org/key_modules/tools.html#creating-an-mcp-server-from-a-toolkit" target="_blank">Converting Camel Tools to MCP Tools</a>
 
 ```{python}
 #| eval: false
@@ -181,9 +181,10 @@ await run_time_example()
 import argparse
 import sys
 from camel.toolkits import ArxivToolkit
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        description="Run Arxiv Toolkit with MCP server mode.",
+        description="Run Arxiv Toolkit in MCP server mode.",
         usage=f"python {sys.argv[0]} [--mode MODE]",
     )
     parser.add_argument(
@@ -204,7 +205,7 @@ if __name__ == "__main__":
     toolkit.mcp.run(args.mode)
 ```
 
-## MCP search toolkits (PR [2278](https://github.com/camel-ai/camel/pull/2278))
+## MCP Search Toolkits (PR [2278](https://github.com/camel-ai/camel/pull/2278))
 
 ```{python}
 #| eval: false
@@ -232,7 +233,7 @@ search_toolkit.search_mcp_servers(
 }
 ```
 
-## MCP search agents (PR [2222](https://github.com/camel-ai/camel/pull/2222))
+## MCP Search Agents (PR [2222](https://github.com/camel-ai/camel/pull/2222))
 
 ```{python}
 #| eval: false
@@ -246,7 +247,8 @@ smithery_config = MCPRegistryConfig(
 
 # Create MCPAgent with registry configurations
 agent = MCPAgent(
-  model=model,registry_configs=[smithery_config]
+  model=model,
+  registry_configs=[smithery_config]
 )
 
 async with agent:
@@ -257,13 +259,13 @@ async with agent:
 
 ## Example 1 (Search)
 
-- message = "What MCP tools I can use for connecting to the Gmail?"
+- message = "What MCP tools can I use for connecting to Gmail?"
 
 ```{python}
 #| eval: false
 #| echo: true
 """
-Response from What MCP tools I can use for connecting to the Gmail?:
+Response from What MCP tools can I use for connecting to Gmail?:
  I found several MCP tools that can connect to Gmail. Here are the options:
  1. **Google Workspace Server** (@rishipradeep-think41/gsuite-mcp)
     - Manage emails and calendar events through Gmail and Calendar APIs
@@ -290,7 +292,7 @@ Response from What MCP tools I can use for connecting to the Gmail?:
 ## Example 2 (Search + Execution)
 
 - May require configuration on the MCP registry, in this case, Smithery.
-- message = "Use Brave MCP search tools to search info about Camel-AI.org."
+- message = "Use Brave MCP search tools to find information about Camel-AI.org."
 
 ```{python}
 #| eval: false
@@ -336,14 +338,14 @@ Response from Use Brave MCP search tools to search info about Camel-AI.org.:
 
 ## Agent as MCP (PR [2144](https://github.com/camel-ai/camel/pull/2144))
 
-Define and Export your own Camel agents!
+Define and Export Your Own Camel Agents!
 
 ```{python}
 #| eval: false
 #| echo: true
 # Create a default chat agent - customize as needed
 chat_agent = ChatAgent()
-chat_agent_description = "The general agent is a helpful assistant that can answer questions and help with tasks."
+chat_agent_description = "A general-purpose assistant that can answer questions and help with various tasks."
 
 reasoning_agent = ChatAgent(
     model=ModelFactory.create(
@@ -351,7 +353,7 @@ reasoning_agent = ChatAgent(
         model_type="gpt-4o-mini",
     )
 )
-reasoning_agent_description = "The reasoning agent is a helpful assistant that can reason about the world."
+reasoning_agent_description = "A specialized assistant focused on logical reasoning and problem-solving."
 
 # Create another agent for searching the web
 search_agent = ChatAgent(
@@ -361,7 +363,7 @@ search_agent = ChatAgent(
     ),
     tools=[FunctionTool(SearchToolkit().search_brave)],
 )
-search_agent_description = "The search agent is a helpful assistant that can search the web."
+search_agent_description = "A research assistant capable of retrieving information from the web."
 
 # Provide a list of agents with names
 agents_dict = {
@@ -379,10 +381,9 @@ description_dict = {
 ```
 
 
-## Agent as MCP Example - using Claude Desktop 
+## Agent as MCP Example - Using Claude Desktop 
 
-Let's use Claude to interact with Camel agents!
-
+- Provide proper configs to Claude:
 ```{json}
 "camel-chat-agent": {
   "command": "/Users/jinx0a/micromamba/bin/python",
@@ -396,6 +397,8 @@ Let's use Claude to interact with Camel agents!
   }
 }
 ```
+
+- Now let's use Claude to interact with Camel agents!
 
 ---
 
@@ -411,11 +414,11 @@ Let's use Claude to interact with Camel agents!
 
 ---
 
-## MCP Ongoing developments
+## Ongoing MCP Developments
 
-- MCP search agents: Integration on more MCP registries, e.g., Composio, etc.
-- MCP Hub: Host and validate our own repositories of MCP servers.
-- Role-playing/Workforce as MCP servers: Make Camel multi-agent module as MCP servers.
+- **MCP Search Agents**: Integration with additional MCP registries including Composio
+- **MCP Hub**: Hosting and validating our own repository of MCP servers
+- **Role-Playing/Workforce as MCP Servers**: Transforming Camel's multi-agent module into MCP servers
 
 ## Thank You!
 
@@ -427,7 +430,3 @@ Let's use Claude to interact with Camel agents!
 - <a href="https://docs.camel-ai.org/" target="_blank">Documentation</a>
 - <a href="https://discord.gg/CNcNpquyDc" target="_blank">Discord Community</a>
 
-### Resources
-- <a href="https://github.com/camel-ai/camel/tree/master/examples/mcp" target="_blank">MCP Examples</a>
-- <a href="https://modelprotocol.org" target="_blank">Model Context Protocol</a>
-:::
