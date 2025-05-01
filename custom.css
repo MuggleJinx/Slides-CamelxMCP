@@ -1,5 +1,13 @@
 /* Custom CSS for MCP Slides - Light Theme */
 
+/* Apply background image to all slides */
+.reveal .slide-background-content {
+  background-image: url("figs/bg.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 /* Override any potential RevealJS dynamic styling */
 .reveal-viewport {
   background-color: #f5f5f5 !important;

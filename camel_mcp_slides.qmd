@@ -72,12 +72,29 @@ The power of standardization:
 
 ## MCP Ecosystem
 
+MCP is gradually becoming a standard. Here are some useful MCP repositories:
+
 - <a href="https://smithery.ai" target="_blank">Smithery</a>
 - <a href="https://composio.dev/" target="_blank">Composio</a>
 - <a href="https://mcp.run/" target="_blank">mcp.run</a>
 - <a href="https://www.aci.dev" target="_blank">ACI.dev</a>
 - <a href="https://www.modelscope.cn/mcp" target="_blank">ModelScope</a>
 - <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank">Awesome MCP Servers</a>
+
+
+# PART II: Camel's Integration Efforts with MCP
+
+## Camel's Integration with MCP
+
+In this section, we'll explore how Camel is integrating with the Model Context Protocol to create a more powerful and flexible agent framework. Here's what we'll cover:
+
+1. Agent using MCP tools
+2. Export Camel existing tools as MCP servers
+3. MCP search toolkits/ MCP search agents
+4. Export Camel agents as MCP servers
+5. Future plans
+
+Let's dive into each of these areas to understand how Camel is embracing the MCP ecosystem.
 
 ## Hands-on with Camel Agents and Tools
 
@@ -91,7 +108,6 @@ from camel.configs import ChatGPTConfig
 
 ```{python}
 #| echo: true
-#| eval: false
 from camel.toolkits import FunctionTool
 
 def my_weird_add(a: int, b: int) -> int:
@@ -112,9 +128,8 @@ response = agent.step("What is 15+15")
 print(response.msgs[0].content)
 ```
 
-# PART II: Camel's Integration Efforts with MCP
 
-## Hands-on with Camel Agents and MCP Tools (1/2)
+## Hands-on with Camel Agents using MCP Servers (1/2)
 
 ```{python}
 #| echo: false
@@ -124,7 +139,9 @@ from camel.types import ModelPlatformType, ModelType
 from camel.configs import ChatGPTConfig
 ```
 
-- <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/time" target="_blank">Time MCP Server</a>
+Here, we will use <a href="https://github.com/modelcontextprotocol/servers/tree/main/src/time" target="_blank">Time MCP Server</a> as an example.
+
+First, we need to provide config file for the agent, in this case:
 
 ```{json}
 {
@@ -149,7 +166,6 @@ model = ModelFactory.create(
 
 ```{python}
 #| echo: true
-#| eval: false
 import asyncio
 from camel.toolkits.mcp_toolkit import MCPToolkit, MCPClient
 
