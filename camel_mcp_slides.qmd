@@ -1,7 +1,7 @@
 ---
-title: "Camel x MCP"
+title: "CAMEL x MCP"
 subtitle: "Making AI Agents Accessible to ALL Tools!"
-author: "Xiaotian Jin, Camel-AI"
+author: "Xiaotian Jin, CAMEL-AI"
 date: today
 format: 
   revealjs:
@@ -9,7 +9,7 @@ format:
     slide-number: true
     chalkboard: false
     transition: slide
-    footer: "Camel x MCP"
+    footer: "CAMEL x MCP"
     css: custom.css
     self-contained: true
     logo: figs/camel.png
@@ -26,7 +26,7 @@ jupyter: python3
 ## Outline
 
 1. PART I: Understanding the Model Context Protocol (MCP)
-2. PART II: MCP Integration in Camel
+2. PART II: MCP Integration in CAMEL
 
 # PART I: What is MCP, exactly? 
 
@@ -36,7 +36,7 @@ jupyter: python3
 
 - **Pre-2023 - When LLMs Lacked Environmental Awareness**:
   - Tool usage implemented via prompt engineering 
-  - Support provided at framework level (e.g., LangChain, Camel agents)
+  - Support provided at framework level (e.g., LangChain, CAMEL agents)
   - No native capabilities; relied on parsing unstructured model outputs
 - **June 2023 – OpenAI Launches Native Function Calling**:
   - Introduced in GPT-4 and GPT-3.5-turbo
@@ -64,39 +64,39 @@ The power of standardization:
 
 ## How Does MCP Work? 
 
-- **MCP Hosts**: Claude Desktop App, Camel agents, and other deployment environments
+- **MCP Hosts**: Claude Desktop App, CAMEL agents, and other deployment environments
 - **MCP Clients**: Internal protocol engines that handle sending/receiving JSON-RPC messages
 - **MCP Servers**: Programs that process incoming messages from clients and return structured responses
  
-![](figs/mcp-how.webp){fig-align="center"}
+![](figs/mcp-how.png){fig-align="center"}
 
 ## MCP Ecosystem
 
 MCP is gradually becoming a standard. Here are some useful MCP repositories:
 
+- <a href="https://www.aci.dev" target="_blank">ACI.dev</a>
 - <a href="https://smithery.ai" target="_blank">Smithery</a>
 - <a href="https://composio.dev/" target="_blank">Composio</a>
 - <a href="https://mcp.run/" target="_blank">mcp.run</a>
-- <a href="https://www.aci.dev" target="_blank">ACI.dev</a>
 - <a href="https://www.modelscope.cn/mcp" target="_blank">ModelScope</a>
 - <a href="https://github.com/punkpeye/awesome-mcp-servers" target="_blank">Awesome MCP Servers</a>
 
 
-# PART II: Camel's Integration Efforts with MCP
+# PART II: CAMEL's Integration Efforts with MCP
 
-## Camel's Integration with MCP
+## CAMEL's Integration with MCP
 
-In this section, we'll explore how Camel is integrating with the Model Context Protocol to create a more powerful and flexible agent framework. Here's what we'll cover:
+In this section, we'll explore how CAMEL is integrating with the Model Context Protocol to create a more powerful and flexible agent framework. Here's what we'll cover:
 
 1. Agent using MCP tools
-2. Export Camel existing tools as MCP servers
+2. Export CAMEL existing tools as MCP servers
 3. MCP search toolkits/ MCP search agents
-4. Export Camel agents as MCP servers
+4. Export CAMEL agents as MCP servers
 5. Future plans
 
-Let's dive into each of these areas to understand how Camel is embracing the MCP ecosystem.
+Let's dive into each of these areas to understand how CAMEL is embracing the MCP ecosystem.
 
-## Hands-on with Camel Agents and Tools
+## Hands-on with CAMEL Agents and Tools
 
 ```{python}
 #| echo: false
@@ -129,7 +129,7 @@ print(response.msgs[0].content)
 ```
 
 
-## Hands-on with Camel Agents using MCP Servers (1/2)
+## Hands-on with CAMEL Agents using MCP Servers (1/2)
 
 ```{python}
 #| echo: false
@@ -154,7 +154,7 @@ First, we need to provide config file for the agent, in this case:
 }
 ```
 
-## Hands-on with Camel Agents and MCP Tools (2/2)
+## Hands-on with CAMEL Agents and MCP Tools (2/2)
 
 ```{python}
 model = ModelFactory.create(
@@ -188,7 +188,7 @@ await run_time_example()
 
 ## Creating an MCP Server from a Toolkit
 
-- <a href="https://docs.camel-ai.org/key_modules/tools.html#creating-an-mcp-server-from-a-toolkit" target="_blank">Converting Camel Tools to MCP Tools</a>
+- <a href="https://docs.camel-ai.org/key_modules/tools.html#creating-an-mcp-server-from-a-toolkit" target="_blank">Converting CAMEL Tools to MCP Tools</a>
 
 ```{python}
 #| eval: false
@@ -308,13 +308,13 @@ Response from What MCP tools can I use for connecting to Gmail?:
 ## Example 2 (Search + Execution)
 
 - May require configuration on the MCP registry, in this case, Smithery.
-- message = "Use Brave MCP search tools to find information about Camel-AI.org."
+- message = "Use Brave MCP search tools to find information about CAMEL-AI.org."
 
 ```{python}
 #| eval: false
 #| echo: true
 """
-Response from Use Brave MCP search tools to search info about Camel-AI.org.:
+Response from Use Brave MCP search tools to search info about CAMEL-AI.org.:
  # CAMEL-AI.org: Information and Purpose
  Based on my search results, here's what I found about CAMEL-AI.org:
  ## Organization Overview
@@ -354,7 +354,7 @@ Response from Use Brave MCP search tools to search info about Camel-AI.org.:
 
 ## Agent as MCP (PR [2144](https://github.com/camel-ai/camel/pull/2144))
 
-Define and Export Your Own Camel Agents!
+Define and Export Your Own CAMEL Agents!
 
 ```{python}
 #| eval: false
@@ -414,7 +414,7 @@ description_dict = {
 }
 ```
 
-- Now let's use Claude to interact with Camel agents!
+- Now let's use Claude to interact with CAMEL agents!
 
 ---
 
@@ -432,15 +432,16 @@ description_dict = {
 
 ## Ongoing MCP Developments
 
-- **MCP Search Agents**: Integration with additional MCP registries including Composio
+- **MCP Search Agents**: Integration with additional MCP registries in MCP **agent**.
 - **MCP Hub**: Hosting and validating our own repository of MCP servers
-- **Role-Playing/Workforce as MCP Servers**: Transforming Camel's multi-agent module into MCP servers
+- **Role-Playing/Workforce as MCP Servers**: Transforming CAMEL's multi-agent module into MCP servers
+- **Calling for use cases**: Build more use cases with CAMEL x MCP!
 
 ## Thank You!
 
 :::: {.columns}
 ::: {.column width="60%"}
-### Connect with Camel-AI
+### Connect with CAMEL-AI
 - <a href="https://camel-ai.org" target="_blank">CAMEL-AI</a>
 - <a href="https://github.com/camel-ai/camel" target="_blank">GitHub: camel-ai/camel</a>
 - <a href="https://docs.camel-ai.org/" target="_blank">Documentation</a>
